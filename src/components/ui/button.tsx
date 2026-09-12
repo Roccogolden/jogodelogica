@@ -17,9 +17,12 @@ const buttonVariants = cva(
         ghost: "hover:bg-accent hover:text-accent-foreground",
         link: "text-primary underline-offset-4 hover:underline",
         play: "bg-primary text-primary-foreground shadow-[0_0_24px_var(--primary-glow)] hover:bg-primary/90",
-        command: "border border-border bg-secondary text-secondary-foreground hover:border-primary hover:bg-accent",
-        level: "border border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground",
-        levelActive: "border border-primary bg-primary text-primary-foreground shadow-[0_0_18px_var(--primary-glow)]",
+        command:
+          "border border-border bg-secondary text-secondary-foreground hover:border-primary hover:bg-accent",
+        level:
+          "border border-border bg-card text-muted-foreground hover:border-primary hover:text-foreground",
+        levelActive:
+          "border border-primary bg-primary text-primary-foreground shadow-[0_0_18px_var(--primary-glow)]",
         hint: "border border-hint/40 bg-hint/10 text-hint hover:bg-hint/20",
       },
       size: {

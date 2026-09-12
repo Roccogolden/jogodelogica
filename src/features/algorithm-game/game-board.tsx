@@ -43,7 +43,10 @@ export function GameBoard({ challenge, player, collected, isRunning }: GameBoard
               {hasObstacle && <ShieldAlert className="cell-obstacle" aria-label="Obstáculo" />}
               {hasCrystal && <Gem className="cell-crystal" aria-label="Cristal" />}
               {hasPlayer && (
-                <span className={cn("player-token", isRunning && "player-running")} aria-label="Byte">
+                <span
+                  className={cn("player-token", isRunning && "player-running")}
+                  aria-label="Byte"
+                >
                   <Bot />
                 </span>
               )}
@@ -52,9 +55,17 @@ export function GameBoard({ challenge, player, collected, isRunning }: GameBoard
         })}
       </div>
       <div className="mt-4 flex flex-wrap gap-4 text-xs font-semibold text-muted-foreground">
-        <span className="flex items-center gap-1.5"><Bot className="size-4 text-primary" /> Byte</span>
-        <span className="flex items-center gap-1.5"><Sparkles className="size-4 text-goal" /> Portal</span>
-        {challenge.crystal && <span className="flex items-center gap-1.5"><Gem className="size-4 text-crystal" /> Cristal</span>}
+        <span className="flex items-center gap-1.5">
+          <Bot className="size-4 text-primary" /> Byte
+        </span>
+        <span className="flex items-center gap-1.5">
+          <Sparkles className="size-4 text-goal" /> Portal
+        </span>
+        {challenge.crystal && (
+          <span className="flex items-center gap-1.5">
+            <Gem className="size-4 text-crystal" /> Cristal
+          </span>
+        )}
       </div>
     </section>
   );
