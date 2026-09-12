@@ -37,7 +37,7 @@ export const commandDefinitions: Record<CommandId, CommandDefinition> = {
   repeat: { id: "repeat", label: "Repetir ×2", icon: RotateCw, tone: "logic" },
 };
 
-export const challenges: Challenge[] = [
+export const challenges: [Challenge, Challenge, Challenge] = [
   {
     title: "Primeiro contato",
     world: "Setor Neon",

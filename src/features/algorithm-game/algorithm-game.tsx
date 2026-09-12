@@ -20,13 +20,14 @@ export function AlgorithmGame() {
   const [coins, setCoins] = useState(3);
   const [completed, setCompleted] = useState<number[]>([]);
   const [feedback, setFeedback] = useState<Feedback>({ tone: "info", message: "Monte seu algoritmo e pressione Executar." });
-  const challenge = challenges[level];
+  const challenge = challenges[level] ?? challenges[0];
 
   const resetBoard = () => { setPlayer(challenge.start); setCollected(false); setActiveStep(null); };
   const resetAll = () => { setSequence([]); resetBoard(); setFeedback({ tone: "info", message: "Sequência limpa. Tente uma nova estratégia." }); };
   const changeLevel = (next: number) => {
     if (next > completed.length) return;
-    setLevel(next); setSequence([]); setPlayer(challenges[next].start); setCollected(false); setActiveStep(null);
+    const nextChallenge = challenges[next] ?? challenges[0];
+    setLevel(next); setSequence([]); setPlayer(nextChallenge.start); setCollected(false); setActiveStep(null);
     setFeedback({ tone: "info", message: "Nova missão carregada. Analise o mapa antes de começar." });
   };
 
@@ -37,7 +38,7 @@ export function AlgorithmGame() {
     for (let index = 0; index < sequence.length; index += 1) {
       setActiveStep(index); await delay(420);
       const command = sequence[index];
-      const moves = command === "repeat" && previousMove ? [previousMove, previousMove] : [command];
+      const moves: CommandId[] = command === "repeat" && previousMove ? [previousMove, previousMove] : [command];
       for (const move of moves) {
         if (move === "collect") {
           if (challenge.crystal && current.x === challenge.crystal.x && current.y === challenge.crystal.y) { hasCrystal = true; setCollected(true); }
