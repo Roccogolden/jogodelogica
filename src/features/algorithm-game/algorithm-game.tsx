@@ -38,6 +38,7 @@ export function AlgorithmGame() {
     for (let index = 0; index < sequence.length; index += 1) {
       setActiveStep(index); await delay(420);
       const command = sequence[index];
+      if (!command) continue;
       const moves: CommandId[] = command === "repeat" && previousMove ? [previousMove, previousMove] : [command];
       for (const move of moves) {
         if (move === "collect") {
