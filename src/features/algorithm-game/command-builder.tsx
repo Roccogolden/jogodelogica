@@ -11,6 +11,7 @@ interface CommandBuilderProps {
   onAdd: (command: CommandId) => void;
   onRemove: (index: number) => void;
   onMove: (index: number, direction: -1 | 1) => void;
+  onReorder: (from: number, to: number) => void;
   onUndo: () => void;
   onReset: () => void;
   onRun: () => void;
@@ -52,7 +53,18 @@ export function CommandBuilder(props: CommandBuilderProps) {
               const command = commandDefinitions[commandId];
               const Icon = command.icon;
               return (
-                <li className={cn("sequence-item", activeStep === index && "sequence-item-active")} key={`${commandId}-${index}`}>
+                <li
+                  className={cn("sequence-item", activeStep === index && "sequence-item-active")}
+                  key={`${commandId}-${index}`}
+                  draggable={!isRunning}
+                  onDragStart={(event) => event.dataTransfer.setData("text/plain", String(index))}
+                  onDragOver={(event) => event.preventDefault()}
+                  onDrop={(event) => {
+                    event.preventDefault();
+                    const from = Number(event.dataTransfer.getData("text/plain"));
+                    if (Number.isInteger(from)) props.onReorder(from, index);
+                  }}
+                >
                   <GripVertical className="size-4 text-muted-foreground" aria-hidden="true" />
                   <span className="sequence-number">{String(index + 1).padStart(2, "0")}</span>
                   <Icon className="size-4 text-primary" />
