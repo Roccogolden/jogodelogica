@@ -74,7 +74,7 @@ export const challenges: [Challenge, Challenge, Challenge] = [
     briefing: "Resolva com menos blocos usando o poder de repetir movimentos.",
     size: 5,
     start: { x: 0, y: 4 },
-    goal: { x: 4, y: 0 },
+    goal: { x: 3, y: 1 },
     obstacles: [{ x: 1, y: 2 }, { x: 2, y: 2 }, { x: 3, y: 2 }],
     commands: ["up", "right", "repeat"],
     solution: ["up", "repeat", "right", "repeat"],
